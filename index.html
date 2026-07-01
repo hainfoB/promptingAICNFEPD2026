@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQP IA & Intégration - Master Document</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B1120',
+                            primary: '#3B82F6',
+                            accent: '#10B981',
+                            locked: '#F59E0B'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark body { background-color: #0B1120; color: #F8FAFC; }
+        html:not(.dark) body { background-color: #F8FAFC; color: #0F172A; }
+
+        .dark .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        html:not(.dark) .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #3B82F6, #10B981);
+        }
+        /* Protection class to prevent text selection on blurred elements */
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+            pointer-events: none;
+        }
+        .bloom-step {
+            transition: all 0.3s ease;
+        }
+        .bloom-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-primary selection:text-white relative">
+
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/10 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-bold text-xl tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-microchip text-brand-primary"></i>
+                    <span>CQP <span class="text-brand-accent">IA</span> Masterclass</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4 text-sm font-medium">
+                        <a href="#expert" class="hover:text-brand-primary px-3 py-2 transition-colors">L'Expert</a>
+                        <a href="#infra" class="hover:text-brand-primary px-3 py-2 transition-colors">Infrastructure</a>
+                        <a href="#strategie" class="hover:text-brand-primary px-3 py-2 transition-colors">Stratégie</a>
+                        <a href="#programme" class="hover:text-brand-primary px-3 py-2 transition-colors">Programme (90h)</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" title="Basculer le thème">
+                        <i class="fa-solid fa-circle-half-stroke text-slate-600 dark:text-slate-300"></i>
+                    </button>
+                    <span class="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50 px-4 py-2 rounded-lg font-semibold text-sm shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                        <i class="fa-solid fa-globe mr-2"></i> 100% En Ligne (CNEFPD)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center py-16 lg:py-24 relative">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-primary rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                    <span class="block text-slate-900 dark:text-white">Certificat de Qualification Professionnelle</span>
+                    <span class="block text-gradient mt-2">Prompt Engineering pour Tous</span>
+                </h1>
+                <p class="mt-4 max-w-3xl mx-auto text-xl text-slate-600 dark:text-slate-400">
+                    Document cadre (Master Document) pour le <strong class="text-slate-800 dark:text-slate-200">CNEFPD</strong>. 
+                    Une ingénierie de formation de 90 heures alliant la puissance du modèle RCTF, la Création Multimédia et les outils souverains, structurée par l'Approche Par Compétences (APC).
+                </p>
+                <div class="mt-10 flex justify-center gap-4 flex-wrap">
+                    <a href="#programme" class="px-8 py-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.3)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                        Découvrir le Programme Détaillé
+                    </a>
+                    <a href="#expert" class="px-8 py-3 rounded-full border border-slate-400 dark:border-slate-600 hover:border-brand-primary dark:hover:border-brand-primary hover:text-brand-primary text-slate-700 dark:text-white font-bold transition-all flex items-center gap-2 bg-slate-100/50 dark:bg-slate-800/50">
+                        <i class="fa-solid fa-user-tie"></i> Parcourir le CV & Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section id="expert" class="py-20 bg-slate-100 dark:bg-slate-900/80 border-y border-black/5 dark:border-white/5 relative overflow-hidden">
+            <div class="absolute -right-40 -top-40 w-96 h-96 bg-brand-primary rounded-full blur-[120px] opacity-10"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">Le Directeur du Programme</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Une double expertise pointue en architecture logicielle IA et ingénierie pédagogique institutionnelle.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Profile Info -->
+                    <div class="w-full lg:w-1/3 space-y-6">
+                        <div class="glass-panel p-6 rounded-2xl text-center border-t-4 border-t-brand-primary">
+                            <div class="relative w-40 h-40 mx-auto rounded-full border-4 border-slate-300 dark:border-slate-700 overflow-hidden shadow-2xl mb-6">
+                                <img src="https://placehold.co/400x400/1E293B/3B82F6?text=AHB" alt="Ahmed Haithem Berkane" class="object-cover w-full h-full">
+                            </div>
+                            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">A. Haithem BERKANE</h2>
+                            <p class="text-brand-accent font-bold mt-1 mb-1">Architecte Logiciel & Expert IA</p>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm font-medium mb-4">Professeur spécialisé chargé de l'ingénierie pédagogique (2021 - Présent)</p>
+                            
+                            <div class="flex flex-wrap justify-center gap-2 mb-6">
+                                <span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full border border-slate-300 dark:border-slate-700">Expertise E-Learning</span>
+                                <span class="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full border border-emerald-300 dark:border-emerald-800/50">Certifié CIP (IFPG)</span>
+                            </div>
+
+                            <div class="text-left space-y-3 text-sm text-slate-700 dark:text-slate-300 border-t border-black/10 dark:border-white/10 pt-6">
+                                <p class="flex items-center gap-3"><i class="fa-solid fa-envelope text-slate-400 dark:text-slate-500 w-5"></i> haithem-berkane@outlook.fr</p>
+                                <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-slate-400 dark:text-slate-500 w-5"></i> +213 796 30 28 02</p>
+                                <p class="flex items-center gap-3"><i class="fa-brands fa-whatsapp text-emerald-500 w-5"></i> +213 699 10 25 23</p>
+                                <p class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-slate-400 dark:text-slate-500 w-5"></i> Bordj Bou Arréridj</p>
+                                <div class="mt-4 pt-4 border-t border-black/10 dark:border-white/10">
+                                    <strong class="block text-slate-900 dark:text-white mb-2">Communauté Numérique :</strong>
+                                    <p class="flex items-center gap-3"><i class="fa-brands fa-instagram text-pink-500 w-5"></i> 68k+ Abonnés (Instagram)</p>
+                                    <p class="flex items-center gap-3"><i class="fa-brands fa-facebook text-blue-500 w-5"></i> 12k+ Abonnés (Facebook)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CV & Portfolio Details -->
+                    <div class="w-full lg:w-2/3 space-y-10">
+                        
+                        <!-- Formation Académique -->
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-slate-900 dark:text-white">
+                                <i class="fa-solid fa-graduation-cap text-slate-400 dark:text-slate-300"></i> Cursus Académique & Diplômes
+                            </h3>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="glass-panel p-4 rounded-xl border border-black/5 dark:border-white/5 border-l-4 border-l-blue-400">
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-md">Master en Informatique (Réseaux & Multimédia)</h4>
+                                    <p class="text-xs text-brand-primary font-medium mt-1 mb-2">2013 • Université El Bachir Ibrahimi, BBA</p>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Projet de fin d'études : HTTP Digest in VoIP Networks.</p>
+                                </div>
+                                <div class="glass-panel p-4 rounded-xl border border-black/5 dark:border-white/5 border-l-4 border-l-emerald-400">
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-md">Licence SIAD (Aide à la Décision)</h4>
+                                    <p class="text-xs text-brand-primary font-medium mt-1 mb-2">2011 • Université El Bachir Ibrahimi, BBA</p>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Major de promo. Projet classé 4ème national (Classification Machine Learning).</p>
+                                </div>
+                                <div class="glass-panel p-4 rounded-xl border border-black/5 dark:border-white/5 border-l-4 border-l-slate-400">
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-md">Classes Préparatoires (Ingéniorat)</h4>
+                                    <p class="text-xs text-brand-primary font-medium mt-1 mb-2">2006 - 2008 • ENPEI Rouiba, Alger</p>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Formation de base incluant l'instruction militaire.</p>
+                                </div>
+                                <div class="glass-panel p-4 rounded-xl border border-black/5 dark:border-white/5 border-l-4 border-l-yellow-500">
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-md">Certificat de Formation Pédagogique (CIP)</h4>
+                                    <p class="text-xs text-brand-primary font-medium mt-1 mb-2">2015 • IFPG Guenbour, Sétif</p>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Expertise en ingénierie de la formation professionnelle.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parcours Pro -->
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-slate-900 dark:text-white">
+                                <i class="fa-solid fa-briefcase text-brand-primary"></i> Expérience Professionnelle
+                            </h3>
+                            <div class="space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 dark:before:via-slate-700 before:to-transparent">
+                                
+                                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-slate-800 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 text-brand-primary">
+                                        <i class="fa-solid fa-robot"></i>
+                                    </div>
+                                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-5 rounded-xl border border-black/5 dark:border-white/5">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <div class="font-bold text-slate-900 dark:text-white text-lg">Consultant Senior IT & IA (Freelance)</div>
+                                        </div>
+                                        <div class="text-brand-accent text-sm font-medium mb-3">2021 - Présent</div>
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm">Développement de solutions prédictives, conception d'architectures RAG privées et intégration d'outils IA pour les systèmes d'aide à la décision.</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-slate-800 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 text-emerald-500 dark:text-emerald-400">
+                                        <i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-5 rounded-xl border border-black/5 dark:border-white/5">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <div class="font-bold text-slate-900 dark:text-white text-lg">Directeur de Projet / Planning Manager</div>
+                                        </div>
+                                        <div class="text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-3">2019 - 2020 • Condor Academy</div>
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm">Pilotage de l'intégration ERP SAP FICO et déploiement du LMS Condor Success Factors. Élaboration des plans de formation.</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-slate-800 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 text-blue-500 dark:text-blue-400">
+                                        <i class="fa-solid fa-chalkboard-user"></i>
+                                    </div>
+                                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-5 rounded-xl border border-black/5 dark:border-white/5">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <div class="font-bold text-slate-900 dark:text-white text-lg">Professeur Spécialisé, Formateur & Cadre</div>
+                                        </div>
+                                        <div class="text-blue-600 dark:text-blue-400 text-sm font-medium mb-3">2014 - 2021 • CFPA / INSFP / Univ BBA</div>
+                                        <ul class="text-slate-600 dark:text-slate-400 text-sm list-disc list-inside space-y-1 mt-2">
+                                            <li><strong class="text-slate-800 dark:text-slate-300">INSFP BBA 01 :</strong> Chef de service formation par intérim (2021).</li>
+                                            <li><strong class="text-slate-800 dark:text-slate-300">CFPA BBA 04 :</strong> Chef de service formation (2020), déploiement E-learning.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Influence & Portfolio section omitted for brevity but keeping exactly similar structure -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nouvelle Section : Infrastructure Souveraine -->
+        <section id="infra" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">Infrastructure Souveraine (LLM CNEFPD)</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Pour garantir la sécurité et l'accessibilité des Travaux Pratiques (TP), une solution locale est proposée via Djezzy Cloud.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-panel p-6 rounded-2xl border-t-4 border-t-brand-accent">
+                        <div class="text-brand-accent text-3xl mb-4"><i class="fa-solid fa-server"></i></div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Serveur Djezzy Cloud</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Instance virtuelle souveraine hébergée en Algérie, optimisée pour l'IA.</p>
+                        <ul class="text-sm space-y-2 text-slate-700 dark:text-slate-300 font-medium">
+                            <li><i class="fa-solid fa-microchip text-slate-400 w-5"></i> 40 vCPU</li>
+                            <li><i class="fa-solid fa-memory text-slate-400 w-5"></i> 80 GB RAM DDR4</li>
+                            <li><i class="fa-solid fa-hard-drive text-slate-400 w-5"></i> 500 GB NVMe Storage</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
+                            <span class="block text-xl font-bold text-brand-primary">87,600 DZD <span class="text-sm font-normal text-slate-500">/ mois</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2 glass-panel p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-white"><i class="fa-solid fa-users-gear text-brand-primary"></i> Capacité & Valeur Ajoutée</h3>
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl border border-black/5 dark:border-white/5">
+                                <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-2">Performances (Simultané)</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Le serveur peut supporter confortablement de <strong class="text-slate-900 dark:text-white">50 à 70 apprenants</strong> exécutant des requêtes IA simultanément via la plateforme du CNEFPD sans latence majeure.</p>
+                            </div>
+                            <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl border border-black/5 dark:border-white/5">
+                                <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">Souveraineté & Déploiement</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Permet aux stagiaires de tester des modèles sans connexion Internet externe. Les données administratives générées restent strictement confidentielles sur le territoire national.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategie" class="py-20 relative bg-slate-100 dark:bg-transparent">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">Stratégie Pédagogique</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Une architecture d'apprentissage rigoureuse basée sur l'Approche Par Compétences (APC) et l'ascension cognitive selon la Taxonomie de Bloom.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- APC Explanation -->
+                    <div class="space-y-6">
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-primary">
+                            <h3 class="text-xl font-bold mb-2 flex items-center gap-2 text-slate-900 dark:text-white"><i class="fa-solid fa-bullseye text-brand-primary"></i> Approche Par Compétences (APC)</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">Le programme transforme le stagiaire de "consommateur d'IA" en "Producteur de solutions". Il s'articule autour d'outils concrets (Gemini, NotebookLM, Nano-Banana) pour résoudre des problèmes administratifs réels.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-accent">
+                            <h3 class="text-xl font-bold mb-2 flex items-center gap-2 text-slate-900 dark:text-white"><i class="fa-solid fa-laptop-code text-brand-accent"></i> Supports E-Learning</h3>
+                            <ul class="text-slate-600 dark:text-slate-300 text-sm space-y-2 list-disc list-inside">
+                                <li>Capsules micro-learning pour l'ancrage théorique.</li>
+                                <li>Screencasts (tutoriels vidéos) des interfaces IA.</li>
+                                <li>Fiches de Synthèse SCORM et Datasets fournis.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bloom Taxonomy Pyramid (Visual Representation) -->
+                    <div class="flex flex-col space-y-3">
+                        <div class="w-full bg-white dark:bg-slate-800 rounded-lg p-4 text-center bloom-step border border-purple-500/30 shadow-sm">
+                            <span class="text-purple-600 dark:text-purple-400 font-bold text-sm uppercase tracking-wider">Module 5 : Créer (PFE)</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Concevoir une solution complète de présentation</p>
+                        </div>
+                        <div class="w-[90%] mx-auto bg-white dark:bg-slate-800 rounded-lg p-4 text-center bloom-step border border-blue-500/30 shadow-sm">
+                            <span class="text-blue-600 dark:text-blue-400 font-bold text-sm uppercase tracking-wider">Module 4 : Analyser & Évaluer</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Générer Pitch Decks & Podcasts avec NotebookLM</p>
+                        </div>
+                        <div class="w-[80%] mx-auto bg-white dark:bg-slate-800 rounded-lg p-4 text-center bloom-step border border-yellow-500/30 shadow-sm">
+                            <span class="text-yellow-600 dark:text-yellow-500 font-bold text-sm uppercase tracking-wider">Module 3 : Créer (Multimédia)</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Modéliser via Nano-Banana (Gemini Flash)</p>
+                        </div>
+                        <div class="w-[70%] mx-auto bg-white dark:bg-slate-800 rounded-lg p-4 text-center bloom-step border border-emerald-500/30 shadow-sm">
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm uppercase tracking-wider">Module 2 : Appliquer</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Prompting Visuel et Storyboarding (Gemini)</p>
+                        </div>
+                        <div class="w-[60%] mx-auto bg-white dark:bg-slate-800 rounded-lg p-4 text-center bloom-step border border-brand-primary/30 shadow-sm">
+                            <span class="text-blue-600 dark:text-blue-400 font-bold text-sm uppercase tracking-wider">Module 1 : Comprendre</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Assimiler le framework RCTF et l'éthique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="programme" class="py-20 bg-slate-200 dark:bg-slate-900 border-t border-slate-300 dark:border-slate-800 relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Transparence Totale & Ingénierie Ouverte</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4 mt-2 text-slate-900 dark:text-white">Le Master Document Dévoilé</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">Ingénierie de détail pour un déploiement 100% à distance via la plateforme officielle du CNEFPD. Méthodes, supports, et scénarios d'évaluation dévoilés point par point.</p>
+                </div>
+
+                <div class="space-y-12">
+                    
+                    <!-- Module 1 -->
+                    <div class="glass-panel rounded-2xl border border-slate-300 dark:border-slate-700">
+                        <div class="p-6 md:p-8 bg-white/50 dark:bg-slate-800/80 border-b border-black/5 dark:border-white/5 relative rounded-t-2xl">
+                            <div class="absolute top-0 right-0 bg-brand-primary text-white text-xs font-bold px-4 py-2 rounded-bl-xl shadow-md">25 Heures</div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">الوحدة 1 : هندسة الأوامر والإدارة</h3>
+                            <h4 class="text-lg text-brand-primary mb-4 font-medium">Unité 1 : Fondations IA & Structure RCTF</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm max-w-4xl"><strong>Cible :</strong> Maîtrise fondamentale des requêtes administratives. Niveau Bloom: Comprendre, Appliquer.</p>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-8 bg-slate-50/50 dark:bg-slate-900/50 rounded-b-2xl">
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">1. Fondements & Hallucinations <span class="text-brand-primary text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Introduction aux LLMs. Comprendre et contourner les hallucinations de l'IA. Éthique et confidentialité des données publiques.</p>
+                                </div>
+                                <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <strong class="text-slate-800 dark:text-slate-200 block mb-1"><i class="fa-solid fa-list-check text-brand-primary mr-1"></i> Évaluation Partielle</strong>
+                                        <p class="text-slate-600 dark:text-slate-400">Identifier une hallucination délibérée dans un texte généré via un QCM Moodle.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">2. Le Framework RCTF <span class="text-brand-primary text-sm">(10h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Rôle, Contexte, Tâche, Format. Application à la rédaction de courriers administratifs stricts.</p>
+                                </div>
+                                <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <strong class="text-slate-800 dark:text-slate-200 block mb-1"><i class="fa-solid fa-list-check text-brand-primary mr-1"></i> Évaluation Partielle</strong>
+                                        <p class="text-slate-600 dark:text-slate-400">Dépôt LMS : Rédiger un prompt RCTF complet pour générer un PV de réunion.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">3. Extensions Google <span class="text-brand-primary text-sm">(10h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Connecter Gemini à Google Maps et Agenda pour l'automatisation de la logistique administrative.</p>
+                                </div>
+                                <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <strong class="text-slate-800 dark:text-slate-200 block mb-1"><i class="fa-solid fa-list-check text-brand-primary mr-1"></i> Évaluation Partielle</strong>
+                                        <p class="text-slate-600 dark:text-slate-400">Capture d'écran prouvant la planification d'un événement multi-lieux via un prompt Gemini.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 2 -->
+                    <div class="glass-panel rounded-2xl border border-slate-300 dark:border-slate-700">
+                        <div class="p-6 md:p-8 bg-white/50 dark:bg-slate-800/80 border-b border-black/5 dark:border-white/5 relative rounded-t-2xl">
+                            <div class="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl shadow-md">15 Heures</div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">الوحدة 2 : التوليد البصري</h3>
+                            <h4 class="text-lg text-emerald-600 dark:text-emerald-400 mb-4 font-medium">Unité 2 : Génération Visuelle Exclusivement avec Gemini</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm max-w-4xl"><strong>Cible :</strong> Création de supports visuels institutionnels (Imagen 3). Niveau Bloom: Appliquer.</p>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-8 bg-slate-50/50 dark:bg-slate-900/50 rounded-b-2xl">
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">1. Ingénierie de Prompts Visuels <span class="text-emerald-600 dark:text-emerald-400 text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Techniques de description (Sujet, Éclairage, Style, Résolution) appliquées à Gemini.</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">2. Storyboarding <span class="text-emerald-600 dark:text-emerald-400 text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Maintenir la cohérence des personnages et des styles sur plusieurs images pour illustrer un guide.</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">3. Édition Conversationnelle <span class="text-emerald-600 dark:text-emerald-400 text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Modifier des images par le chat (ex: "Remplace l'arrière-plan par un bureau").</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 3 -->
+                    <div class="glass-panel rounded-2xl border border-slate-300 dark:border-slate-700">
+                        <div class="p-6 md:p-8 bg-white/50 dark:bg-slate-800/80 border-b border-black/5 dark:border-white/5 relative rounded-t-2xl">
+                            <div class="absolute top-0 right-0 bg-yellow-500 text-slate-900 text-xs font-bold px-4 py-2 rounded-bl-xl shadow-md">15 Heures</div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">الوحدة 3 : نماذج السرعة القصوى</h3>
+                            <h4 class="text-lg text-yellow-600 dark:text-yellow-500 mb-4 font-medium">Unité 3 : Création Multimédia via Nano-Banana</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm max-w-4xl"><strong>Cible :</strong> Maîtrise du modèle expérimental ultra-rapide (Gemini 2.5 Flash Image). Niveau Bloom: Créer.</p>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-8 bg-slate-50/50 dark:bg-slate-900/50 rounded-b-2xl">
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">1. Maîtrise de Nano-Banana <span class="text-yellow-600 dark:text-yellow-500 text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Découverte des capacités de génération instantanée et de l'interface spécifique.</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">2. Infographies & Web <span class="text-yellow-600 dark:text-yellow-500 text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Génération d'illustrations complexes connectées aux données web en temps réel.</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">3. Multi-turn Prompting <span class="text-yellow-600 dark:text-yellow-500 text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Processus itératif avancé pour affiner visuellement une image générée étape par étape.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 4 -->
+                    <div class="glass-panel rounded-2xl border border-slate-300 dark:border-slate-700">
+                        <div class="p-6 md:p-8 bg-white/50 dark:bg-slate-800/80 border-b border-black/5 dark:border-white/5 relative rounded-t-2xl">
+                            <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-bl-xl shadow-md">20 Heures</div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">الوحدة 4 : التلخيص وصناعة العروض</h3>
+                            <h4 class="text-lg text-blue-600 dark:text-blue-400 mb-4 font-medium">Unité 4 : Synthèse & Présentation avec NotebookLM</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm max-w-4xl"><strong>Cible :</strong> Transformer de vastes documents en supports de décision impactants. Niveau Bloom: Analyser, Évaluer.</p>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-8 bg-slate-50/50 dark:bg-slate-900/50 rounded-b-2xl">
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">1. Résumé de Documents <span class="text-blue-600 dark:text-blue-400 text-sm">(06h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Import de gros PDFs administratifs dans NotebookLM. Interrogation de la base documentaire via chat (RAG local).</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">2. Création de Pitch Decks <span class="text-blue-600 dark:text-blue-400 text-sm">(07h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Génération automatique de plans de présentation (PowerPoint structurés) à partir des sources sélectionnées.</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-black/5 dark:border-slate-700/50">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">3. Podcasts & Roadmaps <span class="text-blue-600 dark:text-blue-400 text-sm">(07h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Transformation d'un rapport en discussion audio (Podcast AI) et génération d'un plan d'action graphique (Roadmap).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 5 -->
+                    <div class="glass-panel rounded-2xl border-2 border-brand-primary relative shadow-[0_0_30px_rgba(59,130,246,0.15)] overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-brand-primary text-white text-xs font-bold px-6 py-2 rounded-bl-2xl uppercase tracking-widest shadow-lg z-20">Capstone / PFE (15H)</div>
+                        <div class="p-6 md:p-8 bg-brand-primary/10 dark:bg-gradient-to-br dark:from-slate-800/90 dark:to-slate-900/90 border-b border-brand-primary/20 relative z-10">
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">الوحدة 5 : مشروع التخرج</h3>
+                            <h4 class="text-lg font-bold text-white mb-4 bg-brand-primary px-3 py-1 inline-block rounded">CAPSTONE / PFE (15H)</h4>
+                            <p class="text-slate-700 dark:text-slate-300 text-sm max-w-4xl"><strong>Cible :</strong> Intégration totale. Résoudre un problème professionnel en combinant Texte (RCTF), Visuel (Gemini) et Synthèse (NotebookLM).</p>
+                        </div>
+                        
+                        <div class="p-6 md:p-8 space-y-8 bg-slate-50 dark:bg-slate-900/50 relative z-10">
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-brand-primary/30">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">1. Idéation (Sujet PFE) <span class="text-brand-primary text-sm">(03h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Définition d'un cas d'usage administratif (Ex: Moderniser la communication interne d'un centre).</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-brand-primary/30">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">2. Création des Livrables <span class="text-brand-primary text-sm">(07h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Production du texte de fond avec RCTF, création des visuels avec Gemini/Nano-Banana, et assemblage du Pitch Deck final avec NotebookLM.</p>
+                                </div>
+                            </div>
+                            <div class="grid lg:grid-cols-3 gap-6 bg-white dark:bg-slate-800/30 p-5 rounded-xl border border-brand-primary/30">
+                                <div class="lg:col-span-1">
+                                    <h5 class="font-bold text-slate-900 dark:text-white mb-2">3. Soutenance Asynchrone <span class="text-brand-primary text-sm">(05h)</span></h5>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Enregistrement vidéo de la présentation du Pitch Deck et dépôt sur la plateforme CNEFPD.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="evaluation" class="py-20 relative bg-slate-100 dark:bg-transparent">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white">Ingénierie d'Évaluation (100% Asynchrone)</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">Conçu spécifiquement pour le modèle du CNEFPD. Toutes les évaluations, du contrôle continu jusqu'à la soutenance finale, sont strictement asynchrones via Moodle.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Evaluations Partielles -->
+                    <div class="glass-panel p-8 rounded-2xl border border-black/5 dark:border-white/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl shadow-sm">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Évaluations Formatives</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="border-l-2 border-slate-300 dark:border-slate-700 pl-4">
+                                <h4 class="font-bold text-lg text-slate-800 dark:text-white">Mécanique "LMS / Moodle"</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Chaque module se termine par :</p>
+                                <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 mt-2 space-y-1">
+                                    <li>QCM automatisés avec feedback immédiat.</li>
+                                    <li>Dépôt de Devoirs (Fichiers PDF, Captures d'écran des Prompts).</li>
+                                </ul>
+                                <span class="inline-block mt-3 text-xs bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded text-slate-700 dark:text-slate-300 shadow-sm"><i class="fa-solid fa-scale-balanced mr-1"></i> Notation : Acquis / En cours d'acquisition.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soutenance PFE -->
+                    <div class="glass-panel p-8 rounded-2xl bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-900 border border-black/5 dark:border-white/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shadow-sm">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Soutenance Finale (PFE)</h3>
+                        </div>
+                        <ul class="space-y-5 text-sm text-slate-700 dark:text-slate-300">
+                            <li class="flex gap-3">
+                                <i class="fa-solid fa-file-pdf text-red-500 dark:text-red-400 mt-1"></i>
+                                <div>
+                                    <strong class="text-slate-900 dark:text-white block mb-1">Livrables Attendus</strong>
+                                    Dépôt sur la plateforme d'un Pitch Deck professionnel généré via NotebookLM, intégrant les visuels générés par Gemini.
+                                </div>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fa-solid fa-gavel text-brand-primary dark:text-brand-accent mt-1"></i>
+                                <div>
+                                    <strong class="text-slate-900 dark:text-white block mb-1">Soutenance Différée (Screencast)</strong>
+                                    Le stagiaire enregistre une présentation vidéo de 10 minutes où il explique sa démarche (Prompts utilisés, choix des outils) et dépose le lien sur le LMS.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-200 dark:bg-black/50 py-8 border-t border-black/10 dark:border-white/10 text-center text-sm text-slate-600 dark:text-slate-500">
+        <p>&copy; 2026 - Conçu par le Professeur A.H. BERKANE. Ingénierie Pédagogique.</p>
+        <p class="mt-2 text-xs">Propriété intellectuelle adaptée spécifiquement pour la plateforme d'enseignement à distance du CNEFPD.</p>
+    </footer>
+
+    <script>
+        // Prevent basic right click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+</html>
